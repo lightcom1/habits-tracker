@@ -1,0 +1,71 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	color: #000;
+}
+
+.addHabit {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+	border: 0;
+	font-size: 45px;
+	width: 45px;
+	height: 45px;
+	font-weight: 700;
+	transform-origin: center center;
+	transition: rotate 0.3s ease;
+	user-select: none;
+
+	&.rotate {
+		rotate: 45deg;
+	}
+}
+
+.form {
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	display: none;
+	animation: zoomIn 0.6s;
+
+	&.open {
+		display: block;
+	}
+}
+
+@keyframes zoomIn {
+	from {
+		opacity: 0;
+		transform: scale (0.5);
+	}
+	65% {
+		opacity: 0.8;
+		transform: scale (1.15);
+	}
+	to {
+		opacity: 1;
+		transform: scale (1);
+	}
+}
+
+.inputHabitName {
+	outline: none;
+	padding: 5px 10px;
+	border: 2px solid #000;
+	border-right-width: 1px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.addHabitButton {
+	outline: none;
+	padding: 5px 10px;
+	border: 2px solid #000;
+	border-left-width: 1px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}

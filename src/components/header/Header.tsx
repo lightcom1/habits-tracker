@@ -10,11 +10,11 @@ const Header: FC = () => {
 
 	return (
 		<header className={styles.header}>
-			<h1 className=''> RED Challenges </h1>
+			<h1 className=''>HabitsTracker</h1>
 			<button className={cn(styles.addHabit, {
 				[styles.rotate]: isShow,
 			})} onClick={() => setIsShow(!isShow)}>
-				+
+				<span>+</span>
 			</button>
 			<div
 				className={cn(styles.form, {
@@ -25,7 +25,7 @@ const Header: FC = () => {
 						value={habitName}
 						onChange={e => setHabitName(e.target.value)}
 						className={styles.inputHabitName}
-						type=' text '
+						type='text'
 						placeholder='Enter habit name'
 					/>
 				</label>

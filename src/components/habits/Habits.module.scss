@@ -1,0 +1,73 @@
+.habit {
+	margin-bottom: 10px;
+	animation: zoomIn 0.6s;
+}
+
+.habitHeader {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+
+	img {
+		border-radius: 50%;
+		border: 2px solid #e2e4dd;
+	}
+
+	.habitName {
+		color: #000;
+	}
+}
+
+.habitPlan {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	button {
+		border-radius: 50%;
+		border: 2px solid #000;
+		opacity: 20%;
+		height: 40px;
+		width: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-transform: uppercase;
+		transition: opacity 0.3s ease-out;
+		font-weight: 700;
+
+		img {
+			display: none;
+		}
+
+		&.checked {
+			background-color: #000;
+			border: none;
+			opacity: 100%;
+
+			img {
+				display: inline-block;
+			}
+
+			span {
+				display: none;
+			}
+		}
+	}
+}
+
+@keyframes zoomIn {
+	from {
+		opacity: 0;
+		transform: scale (0.5);
+	}
+	65% {
+		opacity: 0.8;
+		transform: scale (1.15);
+	}
+	to {
+		opacity: 1;
+		transform: scale (1);
+	}
+}

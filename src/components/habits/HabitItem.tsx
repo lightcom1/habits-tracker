@@ -9,12 +9,12 @@ const HabitItem: FC<{ habit: IHabit }> = ({ habit }) => {
 	return (
 		<div className={styles.habit}>
 			<div className={styles.habitHeader}>
-				<img src={habit.img} width='70' alt='' />
+				<img src={habit.img} width='70' alt='Habit' />
 				<span className={styles.habitName}>{habit.name}</span>
 			</div>
 			<div className={styles.habitPlan}>
-				{weekDays.map(name => (
-					<button onClick={toggleHabit}>
+				{weekDays.map((name, i) => (
+					<button onClick={toggleHabit} key={i}>
 						<img src='./check.svg' alt='' />
 						<span> {name} </span>
 					</button>

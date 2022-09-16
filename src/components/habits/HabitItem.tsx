@@ -3,9 +3,10 @@ import { IHabit } from './habit.interface';
 import styles from './Habits.module.scss';
 const weekDays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
-const HabitItem: FC<{ habit: IHabit }> = ({ habit }) => {
-	const toggleHabit = () => {};
-
+const HabitItem: FC<{
+	habit: IHabit;
+	toggleHabit: (habitId: number, dayIndex: number) => void;
+}> = ({ habit, toggleHabit }) => {
 	return (
 		<div className={styles.habit}>
 			<div className={styles.habitHeader}>
@@ -14,7 +15,10 @@ const HabitItem: FC<{ habit: IHabit }> = ({ habit }) => {
 			</div>
 			<div className={styles.habitPlan}>
 				{weekDays.map((name, i) => (
-					<button onClick={toggleHabit} key={i}>
+					<button
+						onClick={() => toggleHabit(habit.id, i)}
+						key={i}
+						className={habit.completed[i] ? styles.checked : undefined}>
 						<img src='./check.svg' alt='' />
 						<span> {name} </span>
 					</button>

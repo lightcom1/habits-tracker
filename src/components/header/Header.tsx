@@ -1,19 +1,39 @@
-import { FC, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import styles from './Header.module.scss';
 import cn from 'clsx';
+import { IHabit } from '../habits/habit.interface';
 
-const Header: FC = () => {
+const Header: FC<{ setHabits: Dispatch<SetStateAction<IHabit[]>> }> = ({
+	setHabits,
+}) => {
 	const [isShow, setIsShow] = useState(false);
 	const [habitName, setHabitName] = useState('');
 
-	const addNewHabit = () => {};
+	const addNewHabit = () => {
+		if (habitName === '') return;
+
+		setHabits(prev => [
+			{
+				id: prev.length + 1,
+				img: './habit.png',
+				name: habitName,
+				completed: [false, false, false, false, false, false, false],
+			},
+			...prev,
+		]);
+
+		setHabitName('');
+		setIsShow(false);
+	};
 
 	return (
 		<header className={styles.header}>
 			<h1 className=''>HabitsTracker</h1>
-			<button className={cn(styles.addHabit, {
-				[styles.rotate]: isShow,
-			})} onClick={() => setIsShow(!isShow)}>
+			<button
+				className={cn(styles.addHabit, {
+					[styles.rotate]: isShow,
+				})}
+				onClick={() => setIsShow(!isShow)}>
 				<span>+</span>
 			</button>
 			<div
@@ -27,6 +47,7 @@ const Header: FC = () => {
 						className={styles.inputHabitName}
 						type='text'
 						placeholder='Enter habit name'
+						onKeyDown={e => e.key === 'Enter' && addNewHabit()}
 					/>
 				</label>
 				<button className={styles.addHabitButton} onClick={addNewHabit}>

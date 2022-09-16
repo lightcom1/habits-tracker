@@ -1,32 +1,18 @@
 import './App.scss';
 import Header from './components/header/Header';
 import ProgressBar from './components/progress-bar/ProgressBar';
-import { useState } from 'react';
-import { IHabit } from './components/habits/habit.interface';
 import Habits from './components/habits/Habits';
+import { useHabit } from './hooks/useHabit';
 
 function App() {
-	const [habits, setHabits] = useState<IHabit[]>([
-		{
-			id: 1,
-			img: './habit.png',
-			name: 'No caffeine',
-			completed: [false, false, false, false, false, false, false],
-		},
-		{
-			id: 2,
-			img: './habit.png',
-			name: 'No caffeine',
-			completed: [false, false, false, false, false, false, false],
-		},
-	]);
+	const { habits, setHabits, toggleHabit, percent } = useHabit();
 
 	return (
 		<>
-			<Header />
+			<Header setHabits={setHabits} />
 			<main>
-				<ProgressBar />
-				<Habits habits={habits} />
+				<ProgressBar percent={percent} />
+				<Habits habits={habits} toggleHabit={toggleHabit} />
 			</main>
 		</>
 	);

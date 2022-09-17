@@ -28,7 +28,6 @@ const Header: FC<{
 				...prev,
 			];
 		});
-
 		setHabitName('');
 		setIsShow(false);
 	};
@@ -47,16 +46,15 @@ const Header: FC<{
 				className={cn(styles.form, {
 					[styles.open]: isShow,
 				})}>
-				<label>
-					<input
-						value={habitName}
-						onChange={e => setHabitName(e.target.value)}
-						className={styles.inputHabitName}
-						type='text'
-						placeholder='Enter habit name'
-						onKeyDown={e => e.key === 'Enter' && addNewHabit()}
-					/>
-				</label>
+				<input
+					value={habitName}
+					onChange={e => setHabitName(e.target.value)}
+					className={styles.inputHabitName}
+					type='text'
+					placeholder='Enter habit name'
+					maxLength={17}
+					onKeyDown={e => e.key === 'Enter' && addNewHabit()}
+				/>
 				<button className={styles.addHabitButton} onClick={addNewHabit}>
 					Add
 				</button>

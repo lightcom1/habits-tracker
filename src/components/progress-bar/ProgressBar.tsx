@@ -20,7 +20,7 @@ const ProgressBar: FC<{ percent: number }> = ({ percent }) => {
 					{weekDays[date.getDay()]} {date.getDate()}/
 					{`${date.getMonth() + 1}`.padStart(2, '0')}
 				</span>
-				You are almost there !
+				{percent >= 100 ? 'Great job!' : 'You are almost there!'}
 			</div>
 			<div className={styles.progressBar}>
 				<div

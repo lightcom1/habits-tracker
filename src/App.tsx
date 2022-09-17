@@ -5,14 +5,19 @@ import Habits from './components/habits/Habits';
 import { useHabit } from './hooks/useHabit';
 
 function App() {
-	const { habits, setHabits, toggleHabit, percent, setPercent } = useHabit();
+	const { habits, setHabits, toggleHabit, percent, setPercent, deleteHabit } =
+		useHabit();
 
 	return (
 		<>
-			<Header setHabits={setHabits} setPercent={setPercent}/>
+			<Header setHabits={setHabits} setPercent={setPercent} />
 			<main>
 				<ProgressBar percent={percent} />
-				<Habits habits={habits} toggleHabit={toggleHabit} />
+				<Habits
+					habits={habits}
+					toggleHabit={toggleHabit}
+					deleteHabit={deleteHabit}
+				/>
 			</main>
 		</>
 	);

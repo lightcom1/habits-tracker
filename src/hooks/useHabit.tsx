@@ -34,5 +34,5 @@ export const useHabit = () => {
 		);
 	};
 
-	return {habits, percent, toggleHabit, setHabits}
+	return {habits, percent, toggleHabit, setHabits, setPercent}
 }

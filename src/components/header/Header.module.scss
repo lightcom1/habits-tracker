@@ -32,7 +32,8 @@
 .form {
 	position: absolute;
 	top: 72px;
-	right: 30px;
+	right: 50%;
+	translate: 50%;
 	display: none;
 	animation: zoomIn 0.6s;
 
@@ -58,7 +59,7 @@
 
 .inputHabitName {
 	outline: none;
-	padding: 20px 25px;
+	padding: 20px 30px;
 	padding-right: 75px;
 	border-radius: 5px;
 	font-size: 18px;

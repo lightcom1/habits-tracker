@@ -3,24 +3,31 @@ import styles from './Header.module.scss';
 import cn from 'clsx';
 import { IHabit } from '../habits/habit.interface';
 
-const Header: FC<{ setHabits: Dispatch<SetStateAction<IHabit[]>> }> = ({
-	setHabits,
-}) => {
+const Header: FC<{
+	setHabits: Dispatch<SetStateAction<IHabit[]>>;
+	setPercent: Dispatch<SetStateAction<number>>;
+}> = ({ setHabits, setPercent }) => {
 	const [isShow, setIsShow] = useState(false);
 	const [habitName, setHabitName] = useState('');
 
 	const addNewHabit = () => {
 		if (habitName === '') return;
 
-		setHabits(prev => [
-			{
-				id: prev.length + 1,
-				img: './habit.png',
-				name: habitName,
-				completed: [false, false, false, false, false, false, false],
-			},
-			...prev,
-		]);
+		setHabits(prev => {
+			setPercent((prevPercent: number) => {
+				return prevPercent - prevPercent / (prev.length + 1);
+			});
+
+			return [
+				{
+					id: prev.length + 1,
+					img: './habit.png',
+					name: habitName,
+					completed: [false, false, false, false, false, false, false],
+				},
+				...prev,
+			];
+		});
 
 		setHabitName('');
 		setIsShow(false);
@@ -28,7 +35,7 @@ const Header: FC<{ setHabits: Dispatch<SetStateAction<IHabit[]>> }> = ({
 
 	return (
 		<header className={styles.header}>
-			<h1 className=''>HabitsTracker</h1>
+			<h1>HabitsTracker</h1>
 			<button
 				className={cn(styles.addHabit, {
 					[styles.rotate]: isShow,

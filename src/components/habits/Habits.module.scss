@@ -28,6 +28,7 @@
 	justify-content: space-between;
 
 	button {
+		user-select: none;
 		border-radius: 50%;
 		border: 2px solid #000;
 		opacity: 20%;

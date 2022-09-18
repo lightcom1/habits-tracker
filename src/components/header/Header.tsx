@@ -44,7 +44,7 @@ const Header: FC<{
 						[styles.rotate]: isEditing,
 					})}
 					onClick={() => setIsEditing(!isEditing)}>
-					<img src='./edit.svg' alt='edit' />
+					<img src='./edit.svg' width='30' alt='edit' />
 				</button>
 				<button
 					className={cn(styles.addHabit, {

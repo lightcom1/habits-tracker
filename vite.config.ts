@@ -23,7 +23,13 @@ export default defineConfig({
             src: 'brain512.png',
             sizes: '512x512',
             type: 'image/png'
-          }
+          },
+					{
+						src: 'brain192Mask.png',
+            sizes: '192x192',
+						type: 'image/png',
+						purpose: 'any maskable'
+					}
         ]
       }
 		}),

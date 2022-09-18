@@ -1,5 +1,5 @@
 export interface IHabit {
-	id: number;
+	id: string;
 	img: string;
 	name: string;
 	completed: boolean[];

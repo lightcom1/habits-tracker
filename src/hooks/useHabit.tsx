@@ -3,7 +3,8 @@ import { IHabit } from './../components/habits/habit.interface';
 
 export const useHabit = () => {
 	const [habits, setHabits] = useState<IHabit[]>([]);
-	const [percent, setPercent] = useState(0);
+	const [percent, setPercent] = useState<number>(0);
+	const [isEditing, setIsEditing] = useState<boolean>(false);
 
 	useEffect(() => {
 		const LSHabits = localStorage.getItem('habits');
@@ -24,7 +25,7 @@ export const useHabit = () => {
 
 	const date = new Date();
 
-	const toggleHabit = (habitId: number, dayIndex: number) => {
+	const toggleHabit = (habitId: string, dayIndex: number) => {
 		const today = date.getDay() - 1 === -1 ? 6 : date.getDay() - 1;
 		if (today !== dayIndex) return;
 
@@ -48,8 +49,24 @@ export const useHabit = () => {
 		);
 	};
 
-	const deleteHabit = (habitId: number) => {
+	const deleteHabit = (habitId: string) => {
 		setHabits(habits.filter(habit => habit.id !== habitId));
+		
+		if (habits.length === 1) {
+			setPercent(0);
+			return;
+		}
+
+		const countDays = (habits.length - 1) * 7;
+		const percentOneDay = 100 / countDays;
+		let newPercent = 0;
+
+		for (let i = 0; i < habits.length - 1; i++) {
+			for (let status of habits[i].completed) {
+				if (status) newPercent += percentOneDay;
+			}
+		}
+		setPercent(newPercent);
 	};
 
 	return {
@@ -59,5 +76,7 @@ export const useHabit = () => {
 		setHabits,
 		setPercent,
 		deleteHabit,
+		isEditing,
+		setIsEditing,
 	};
 };

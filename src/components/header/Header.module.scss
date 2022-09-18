@@ -4,28 +4,52 @@
 	justify-content: space-between;
 	margin-bottom: 10px;
 	color: #000;
-}
 
-.addHabit {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	outline: none;
-	border: 0;
-	font-size: 45px;
-	width: 45px;
-	height: 45px;
-	background-color: #fff;
-	font-weight: 700;
-	user-select: none;
+	.headerButtons {
+		display: flex;
+		align-items: center;
+		column-gap: 5px;
 
-	span {
-		transform-origin: center center;
-		transition: rotate 0.3s ease;
-	}
+		.edit {
+			width: 45px;
+			height: 45px;
+			outline: none;
+			border: 0;
+			user-select: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			
+			img {
+				transition: rotate 0.3s ease;
+			}
 
-	&.rotate span {
-		rotate: 45deg;
+			&.rotate img {
+				rotate: -90deg;
+			}
+		}
+
+		.addHabit {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			outline: none;
+			border: 0;
+			font-size: 45px;
+			width: 45px;
+			height: 45px;
+			background-color: #fff;
+			font-weight: 700;
+			user-select: none;
+
+			span {
+				transition: rotate 0.3s ease;
+			}
+
+			&.rotate span {
+				rotate: 45deg;
+			}
+		}
 	}
 }
 
@@ -64,7 +88,7 @@
 	border-radius: 5px;
 	font-size: 18px;
 	background-color: rgba(255, 255, 255, 0.95);
-	
+
 	&::placeholder {
 		padding-left: 3px;
 	}

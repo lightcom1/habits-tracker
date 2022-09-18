@@ -5,9 +5,10 @@ import HabitItem from './HabitItem';
 
 const Habits: FC<{
 	habits: IHabit[];
-	toggleHabit: (habitId: number, dayIndex: number) => void;
-	deleteHabit: (habitId: number) => void;
-}> = ({ habits, toggleHabit, deleteHabit }) => {
+	toggleHabit: (habitId: string, dayIndex: number) => void;
+	deleteHabit: (habitId: string) => void;
+	isEditing: boolean;
+}> = ({ habits, toggleHabit, deleteHabit, isEditing }) => {
 	return (
 		<section className={styles.habitContainer}>
 			{habits.length > 0
@@ -16,6 +17,7 @@ const Habits: FC<{
 							habit={habit}
 							key={habit.id}
 							toggleHabit={toggleHabit}
+							isEditing={isEditing}
 							deleteHabit={deleteHabit}
 						/>
 				  ))

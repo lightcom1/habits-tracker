@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { IHabit } from './../components/habits/habit.interface';
 
 export const useHabit = () => {
@@ -49,24 +49,35 @@ export const useHabit = () => {
 		);
 	};
 
+	const [isDeleted, setIsDeleted] = useState<boolean>(false);
+
+	useEffect(() => {
+		const countDays = habits.length * 7;
+
+		const percentOneDay = 100 / countDays;
+		let newPercent = 0;
+
+		for (let i = 0; i < habits.length; i++) {
+			console.log(habits[i].completed);
+			for (let status of habits[i].completed) {
+				if (status) {
+					newPercent += percentOneDay;
+				}
+			}
+		}
+
+		setPercent(newPercent);
+	}, [isDeleted]);
+
 	const deleteHabit = (habitId: string) => {
 		setHabits(habits.filter(habit => habit.id !== habitId));
-		
+
 		if (habits.length === 1) {
 			setPercent(0);
 			return;
 		}
 
-		const countDays = (habits.length - 1) * 7;
-		const percentOneDay = 100 / countDays;
-		let newPercent = 0;
-
-		for (let i = 0; i < habits.length - 1; i++) {
-			for (let status of habits[i].completed) {
-				if (status) newPercent += percentOneDay;
-			}
-		}
-		setPercent(newPercent);
+		setIsDeleted(!isDeleted);
 	};
 
 	return {

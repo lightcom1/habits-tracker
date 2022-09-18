@@ -1,32 +1,27 @@
-/* nunito-regular - latin */
+/* nunito-regular - latin_cyrillic */
 @font-face {
-	font-family: 'Nunito';
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: local('Nunito'),
-		url('./font/nunito-v25-latin-regular.woff2') format('woff2'),
-		/* Chrome 26+, Opera 23+, Firefox 39+ */
-			url('./font/nunito-v25-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Nunito'),
+       url('./font/nunito-v25-latin_cyrillic-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./font/nunito-v25-latin_cyrillic-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-/* nunito-700 - latin */
+/* nunito-700 - latin_cyrillic */
 @font-face {
-	font-family: 'Nunito';
-	font-style: normal;
-	font-weight: 700;
-	font-display: swap;
-	src: local('Nunito'), url('./font/nunito-v25-latin-700.woff2') format('woff2'),
-		/* Chrome 26+, Opera 23+, Firefox 39+ */
-			url('./font/nunito-v25-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Nunito'),
+       url('./font/nunito-v25-latin_cyrillic-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./font/nunito-v25-latin_cyrillic-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 :root {
 	font-family: 'Nunito', Avenir, Helvetica, Arial, sans-serif;
 	font-size: 16px;
 	line-height: 24px;
 	font-weight: 400;
-
 	color: rgba(255, 255, 255, 0.87);
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -47,6 +42,7 @@
 input,
 button {
 	font-family: inherit;
+	color: #000;
 }
 input::-ms-clear {
 	display: none;

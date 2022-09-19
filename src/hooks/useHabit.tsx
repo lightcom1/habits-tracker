@@ -5,6 +5,9 @@ export const useHabit = () => {
 	const [habits, setHabits] = useState<IHabit[]>([]);
 	const [percent, setPercent] = useState<number>(0);
 	const [isEditing, setIsEditing] = useState<boolean>(false);
+	const [isDeleted, setIsDeleted] = useState<boolean>(false);
+	const initialRender = useRef(true);
+	const date = new Date();
 
 	useEffect(() => {
 		const LSHabits = localStorage.getItem('habits');
@@ -23,7 +26,6 @@ export const useHabit = () => {
 		updateLS();
 	}, [habits]);
 
-	const date = new Date();
 
 	const toggleHabit = (habitId: string, dayIndex: number) => {
 		const today = date.getDay() - 1 === -1 ? 6 : date.getDay() - 1;
@@ -49,24 +51,25 @@ export const useHabit = () => {
 		);
 	};
 
-	const [isDeleted, setIsDeleted] = useState<boolean>(false);
-
 	useEffect(() => {
-		const countDays = habits.length * 7;
+		if (initialRender.current) {
+			initialRender.current = false;
+		} else {
+			const countDays = habits.length * 7;
+			const percentOneDay = 100 / countDays;
+			let newPercent = 0;
 
-		const percentOneDay = 100 / countDays;
-		let newPercent = 0;
-
-		for (let i = 0; i < habits.length; i++) {
-			console.log(habits[i].completed);
-			for (let status of habits[i].completed) {
-				if (status) {
-					newPercent += percentOneDay;
+			for (let i = 0; i < habits.length; i++) {
+				console.log(habits[i].completed);
+				for (let status of habits[i].completed) {
+					if (status) {
+						newPercent += percentOneDay;
+					}
 				}
 			}
-		}
 
-		setPercent(newPercent);
+			setPercent(newPercent);
+		}
 	}, [isDeleted]);
 
 	const deleteHabit = (habitId: string) => {

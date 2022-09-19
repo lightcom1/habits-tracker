@@ -28,7 +28,7 @@ export default defineConfig({
 						src: 'brain192Mask.png',
             sizes: '192x192',
 						type: 'image/png',
-						purpose: 'maskable'
+						purpose: 'any maskable'
 					}
         ]
       }

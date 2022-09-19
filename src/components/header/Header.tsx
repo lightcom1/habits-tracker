@@ -1,4 +1,11 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import {
+	Dispatch,
+	FC,
+	SetStateAction,
+	useState,
+	useRef,
+	useEffect,
+} from 'react';
 import styles from './Header.module.scss';
 import cn from 'clsx';
 import { IHabit } from '../habits/habit.interface';
@@ -12,6 +19,7 @@ const Header: FC<{
 }> = ({ setHabits, setPercent, setIsEditing, isEditing }) => {
 	const [isShow, setIsShow] = useState(false);
 	const [habitName, setHabitName] = useState('');
+	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const addNewHabit = () => {
 		if (habitName === '') return;
@@ -35,6 +43,12 @@ const Header: FC<{
 		setIsShow(false);
 	};
 
+	useEffect(() => {
+		if (isShow === true) {
+			inputRef.current?.focus();
+		}
+	}, [isShow]);
+
 	return (
 		<header className={styles.header}>
 			<h1>HabitsTracker</h1>
@@ -44,7 +58,7 @@ const Header: FC<{
 						[styles.rotate]: isEditing,
 					})}
 					onClick={() => setIsEditing(!isEditing)}>
-					<img src='./edit.svg' width='30' alt='edit' />
+					<img src='./edit.svg' width='30' height='30' alt='edit' />
 				</button>
 				<button
 					className={cn(styles.addHabit, {
@@ -62,6 +76,7 @@ const Header: FC<{
 					value={habitName}
 					onChange={e => setHabitName(e.target.value)}
 					className={styles.inputHabitName}
+					ref={inputRef}
 					type='text'
 					placeholder='Enter habit name'
 					maxLength={30}

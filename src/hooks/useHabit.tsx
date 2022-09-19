@@ -60,7 +60,6 @@ export const useHabit = () => {
 			let newPercent = 0;
 
 			for (let i = 0; i < habits.length; i++) {
-				console.log(habits[i].completed);
 				for (let status of habits[i].completed) {
 					if (status) {
 						newPercent += percentOneDay;
@@ -77,6 +76,7 @@ export const useHabit = () => {
 
 		if (habits.length === 1) {
 			setPercent(0);
+			setIsEditing(false)
 			return;
 		}
 

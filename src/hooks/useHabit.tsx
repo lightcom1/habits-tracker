@@ -9,10 +9,30 @@ export const useHabit = () => {
 	const initialRender = useRef(true);
 	const date = new Date();
 
+	const getData = async () => {
+		const options = {
+			method: 'GET',
+			headers: {
+				accept: 'application/json',
+				Authorization:
+					'Bearer olRy9pAQYyBQX02GPj7ksHfl8b142NwFr7tYPkpyhPIpsn2j6NsYNzAC4qOzSm7x',
+				'Access-Control-Allow-Origin': '*',
+			},
+		};
+
+		const data = await fetch(
+			'https://api.iconfinder.com/v4/icons/search?query=homework&count=3&premium=0',
+			options
+		);
+
+		const response = await data.json();
+		console.log('response: ', response);
+	};
+
 	useEffect(() => {
 		const LSHabits = localStorage.getItem('habits');
 		const LSPercent = localStorage.getItem('percent');
-
+		getData();
 		setHabits(JSON.parse(LSHabits || '[]'));
 		setPercent(JSON.parse(LSPercent || '0'));
 	}, []);
@@ -25,7 +45,6 @@ export const useHabit = () => {
 	useEffect(() => {
 		updateLS();
 	}, [habits]);
-
 
 	const toggleHabit = (habitId: string, dayIndex: number) => {
 		const today = date.getDay() - 1 === -1 ? 6 : date.getDay() - 1;
@@ -76,7 +95,7 @@ export const useHabit = () => {
 
 		if (habits.length === 1) {
 			setPercent(0);
-			setIsEditing(false)
+			setIsEditing(false);
 			return;
 		}
 

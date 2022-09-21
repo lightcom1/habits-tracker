@@ -51,7 +51,10 @@ const Header: FC<{
 
 	return (
 		<header className={styles.header}>
-			<h1>HabitsTracker</h1>
+			<div className={styles.headerLogo}>
+				<img src='./brain192.png' alt='brain' width='40' height='40' />
+				<h1>Tracker<span>Hub</span></h1>
+			</div>
 			<div className={styles.headerButtons}>
 				<button
 					className={cn(styles.edit, {
